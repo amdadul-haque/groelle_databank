@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background-color: white;
+  color: black;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main-section ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 1fr;
+  grid-template-rows: 1fr 0fr 0fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". . ."
+    ". . .";
+  height: 100vw;
+}
+
+/* HEADER CSS */
+
+/* .main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.main-header ul {
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+
+.main-header li {
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+.header-name {
+  margin-left: 20px;
+} */
+
+
+/* ARTIST CSS */
+
+.artist-names {
+  background-color: white;
+  margin-left: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-right: 1px solid rgb(217, 215, 215);
+}
+
+.artist-names a {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.artist-names a:hover{
+  /* text-decoration: underline; */
+  color: rgb(190, 187, 187);
+}
+
+
+/* DATA CSS */
+
+.data-display {
+  background-color: white;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+
+.data-display img {
+  object-fit: contain;
+}
+
+
+/* WORK CSS */
+
+.work-data {
+  padding: 15px;
+}
+
+.work-data p {
+  line-height: 1.1;
+}
+
+.work-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.work-status {
+  margin-top: 15px;
+}
+
+
+/* STATS CSS */
+
+.stats-display {
+  background-color: aqua;
+  border-right: 1px solid rgb(217, 215, 215);
+}

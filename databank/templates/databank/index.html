@@ -1,0 +1,57 @@
+{%extends "databank/base/base.html"%} 
+{% load static %}
+
+{%block title%}Lagerbestand{%endblock%}
+
+{%block body%}
+    <section class="main-section">
+        <div class="wrapper">
+
+            {% comment %} Left column {% endcomment %}
+            <div class="artist-names">
+                <ul>
+                    {% for artist in artists%}
+                        <li>
+                            <a href="{%url 'artistworks-page' artist.id %}">{{ artist.name }}</a>
+                        </li>
+                    {%endfor%}
+                </ul>
+            </div>
+
+            {% comment %} Middle column {% endcomment %}
+            <div class="data-display">
+                <ul>
+                    {% for work in works %}
+                        {% include "databank/includes/work_details.html" %}
+                    {%endfor%}
+                </ul>
+            </div>
+            
+            {% comment %} Right column {% endcomment %}
+            <div class="stats-display">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Käufer</th>
+                        <th scope="col">Arbeit</th>
+                        <th scope="col">Preis</th>
+                        <th scope="col">Steuersatz</th>
+                        <th scope="col">Erlass</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {%for sale in sales%}
+                            {% include "databank/includes/stats.html"%}
+                        {%endfor%}
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+    </section>
+{%endblock%}
