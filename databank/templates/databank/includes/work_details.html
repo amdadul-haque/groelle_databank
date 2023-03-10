@@ -1,44 +1,49 @@
-<li class="work-details">
+{% load bootstrap_icons %}
 
-    <div class="work-img">
-        <img src="{{ work.image.url }}" width="240" alt="{{ work.name }}: img error">
-    </div>
-    <div class="work-data">
+{% if work.salesstatus != "Geliefert"%}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0 align-items-end">
+
+        <div class="card-header bg-white d-flex justify-content-between border-bottom-0">
+            <div class="d-flex">
+                <h3 class="card-title me-2 mb-0">{{work.name}}</h3>
+                <h6 class="card-subtitle ms-2 text-muted align-self-center">{{work.production_date}}</h6>
+            </div>
+            <div class="form-form-check-label">
+                <a class="ms-2" href="{%url 'editwork-page' work.slug%}">{% bs_icon 'pencil' size="1.1em" %}</a>
+                <a class="ms-2"href="{%url 'salework-page' work.slug%}">{% bs_icon 'currency-dollar' size="1.1em" %}</a>
+                <input class="form-check-input ms-3 me-0" type="checkbox" value="{{work.id}}" name="art-work">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <img src="{{ work.image.url }}" class="img-fluid mb-3" alt="..."> </a>
+            {% comment %} <a href="{%url 'artist-slide-page' work.artist.slug%}">  {% endcomment %}
+        </div>
+        <div class="col-md-4">
+            <div class="card-body d-flex flex-column justify-content-end">
+                <p class="card-text mb-0">{{work.artist.name}}</p>
+                <p class="card-text mb-0">{{work.materials}}</p>
+                <p class="card-text mb-0">{{work.width}} x {{work.height}} cm</p>
+                <p class="card-text mb-0">{{work.price}} Euro</p> 
+            </div>
         
-        <p class="work-title">{{ work.name }}, {{ work.production_date }}</p>
-        <p>{{ work.materials }}</p>
-        <p>{{ work.height }} x {{ work.width }} cm</p>
-        <p>{{ work.price }} €</p>
-        
-        <p class="work-status">{{ work.status.status }}: {{ work.storage_tag }}</p>
-    </div>
-    
+        </div>
+        <div class="col">
+            <div class="card-body mt-1 text-end">
+                <p class="card-text mb-0"><small class="text-muted">{{work.artist.storagetag}}{{work.id}}</small></p>
+                
+                {% if work.storagestatus == "Vermietet" %}
+                <p class="card-text mb-0"><small class="text-muted">{{work.renter.name}}</small></p>
+                {% else %}
+                <p class="card-text mb-0"><small class="text-muted">{{work.salesstatus}}</small></p>
 
-    
-    <div class="container">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">Verkaufen</button>
-
-        <div class="modal fade" id="modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Verkaufstatus</h2>
-                        <button class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            {{ statusform.as_ul }}
-                            </br>
-                            <button class="btn btn-secondary">Speichern</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        Footer
-                    </div>
-                </div>
+                {%endif%}
+                <p class="card-text mb-0"><small class="text-muted">{{work.storagestatus}}</small></p>
+                
             </div>
         </div>
     </div>
-    
-</li>
+</div>
+
+{%endif%}

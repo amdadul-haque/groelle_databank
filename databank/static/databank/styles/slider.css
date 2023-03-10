@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.c-inner {
+    max-height: 100%;
+}
+
+.c-item {
+    height: auto;
+}
+
+.c-img {
+    object-fit: cover;
+    max-height: 50vh;
+    /* adjust this value as per your requirement */
+    max-width: 100%;
+}

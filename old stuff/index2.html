@@ -1,0 +1,72 @@
+{%extends "databank/base/base.html"%} 
+{% load static %}
+
+{% load django_bootstrap5 %}
+
+{% load bootstrap_icons %}
+
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{%block title%}Lagerbestand{%endblock%}
+
+{%block body%}
+    <section class="main-section">
+        <div class="wrapper">
+
+            {% comment %} Left column {% endcomment %}
+            <div class="artist-names">
+                <ul>
+                    {% for artist in artists%}
+                        <li>
+                           <a href="{%url 'artistworks-page' artist.slug %}">{{ artist.name }}</a> 
+                        </li>
+                        
+                    {%endfor%}
+                </ul>
+            </div>
+
+            {% comment %} Middle column {% endcomment %}
+            <div class="container">
+                {% comment %} <a href="{%url 'addwork-page'%}">{% bs_icon 'file-earmark-plus' size="1.1em" %}</a> {% endcomment %}
+                <form id="art-selection" action="" method="POST">
+                    {% csrf_token %}
+                    <ul>
+                        {% for work in works %}
+                            {% include "databank/includes/work_details.html" %}
+                        {%endfor%}
+                    </ul>
+                    <button type="submit" form="art-selection">Export</button>
+                </form>
+            </div>
+            
+            {% comment %} Right column {% endcomment %}
+            <div class="container">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">Tag</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Käufer/in</th>
+                        <th scope="col">Arbeit</th>
+                        <th scope="col">Preis</th>
+                        <th scope="col">Steuersatz</th>
+                        <th scope="col">Erlass</th>
+                        <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for sale in works%}
+                            {% include "databank/includes/stats.html"%}
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+    </section>
+{%endblock%}

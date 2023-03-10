@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {%block head%}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,25 +13,75 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% load django_bootstrap5 %}
 
-    <link rel="stylesheet" href="{% static 'databank/styles/databank.css' %}">
+    {% load bootstrap_icons %}
+
+    {% bootstrap_css %}
+
+    {% bootstrap_javascript %}
+
+    {% bootstrap_messages %}
+
+    <link rel="stylesheet" href="{% static 'databank/styles/styles.css' %}">
     <link rel="icon" href="{% static 'databank/images/gpp_logo_02.jpg' %}" type="image/icon type">
+   
+    
+    {%block style%}{%endblock style%}
+    
     <title>{%block title%}Lagerbestand{%endblock%}</title>
-    {%block style%}{%endblock%}
+    {%endblock head%}
+   
 </head>
 
 <body>
-    <header class="main-header">
-        <div class="header-name">
-            <a href="/databank"><h1>Grölle - Lagerbestand</h1></a>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5">
+        <div class="container-fluid">
+            <a class="navbar-brand ms-5" href="/databank/">
+                <h1>GRÖLLE</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wuppertal-page' %}">Wuppertal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'duesseldorf-page' %}">Düsseldorf</a>
+                    </li>
+                    <!-- Button to Open Modal -->
+                    <button type="button" class="btn btn-outline-light text-center ms-5" data-bs-toggle="modal" data-bs-target="#exhibitionModal">Preisliste PDF</button>
+                    
+                    <button type="button" class="btn btn-outline-light text-center ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Rechnung PDF</button>
+                    
+                    
+                    <li class="nav-item me-3 ms-5">
+                        <a href="{% url 'addartist-page' %}" class="btn btn-outline-light text-center align-items-center" > + Künstler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'addwork-page' %}" class="btn btn-outline-light text-center align-items-center" >
+                        + Work</a>
+                    </li>
+                </ul>
+
+                <div>
+                    <ul class="navbar-nav mb-2 me-5 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}" target="_blank">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "logout-page" %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="header-list">
-            <ul>
-                <li><a href="{% url 'admin:index' %}">Admin</a></li>
-                <li><a href="">Logout</a></li>
-            </ul>
-        </div>
-    </header>
+    </nav>
 
     <main>
         {%block body%}{%endblock%}

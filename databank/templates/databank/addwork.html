@@ -1,0 +1,30 @@
+{%extends "databank/base/base.html"%} 
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% load bootstrap_icons %}
+
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
+{%block title%}Upload{%endblock%}
+{%block style%}{%endblock%}
+
+
+{%block body%}
+    <div class="container">
+        <h2 class="mt-5">Neues Bild hinzufügen</h2>
+        <div class="row my-5">
+            <div class="col-md-12">
+                 <form action="" method="POST" class="form">
+                    {%csrf_token%}
+                    {% bootstrap_form form %}
+                    <input type="submit" value="Speichern" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+{%endblock%}

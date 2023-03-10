@@ -1,12 +1,20 @@
 {% load static %}
 
+{% if sale.salesstatus != "Lager" and sale.salesstatus != "" %}
 <tr>
-    <th scope="row">{{sale.work.storage_tag}}</th>
-    <td>{{ sale.date }}</td>
+    <th scope="row">{{sale.artist.storagetag}}{{sale.id}}</th>
+    <td>{{ sale.salesdate }}</td>
     <td>{{ sale.buyer }}</td>
-    <td>{{ sale.work.name }}</td>
-    <td>{{ sale.price }}€</td>
-    <td>{{ sale.tax }}%</td>
-    <td>{{ sale.decree }}%</td>  
+    <td>{{ sale.name }}</td>
+    {%if sale.salesstatus == "Verkauft"%}
+        <td style="color:rgb(255, 118, 118);">{{ sale.salesstatus }}</td>
+    {%else%}
+        <td style="color:green;">{{ sale.salesstatus }}</td>
+    {%endif%}
+
+    <td>
+        <input type="checkbox" id="checkbox-{{sale.id}}" name="sale-checkbox" value="{{sale.id}}">
+    </td>
+    
 </tr>
-        
+{%endif%}

@@ -1,0 +1,26 @@
+{% load bootstrap_icons %}
+
+<li class="work-details">
+    
+    <div class="work-img">
+        <img src="{{ work.image.url }}" width="240" alt="{{ work.name }}: img error">
+    </div>
+    <div class="work-data">
+        
+        <p class="work-title">{{ work.name }}, {{ work.production_date }}</p>
+        <p>{{ work.materials }}</p>
+        <p>{{ work.width }} x {{ work.height }} cm</p>
+        <p>{{ work.price }} €</p>
+        
+        <p class="work-status">{{work.salesstatus}} {{work.artist.storagetag}}{{work.id}}</p>
+    </div>
+    
+    <div class="options">
+        <div class="edit">
+            <a href="{%url 'editwork-page' work.slug%}">{% bs_icon 'pencil' size="1.1em" %}</a>
+            <a href="{%url 'salework-page' work.slug%}">{% bs_icon 'currency-dollar' size="1.1em" %}</a>
+            <input type="checkbox" value="{{work.id}}" name="art-work">
+        </div>
+    </div>
+
+</li>
